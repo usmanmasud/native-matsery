@@ -1,3 +1,4 @@
+import 'react-native-url-polyfill/auto'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Image, ScrollView } from "react-native";
 import { StatusBar } from 'expo-status-bar';
@@ -6,8 +7,13 @@ import { Redirect, router } from 'expo-router';
 
 import { images } from '../constants'
 import CustomButton from '../components/CustomButton';
+import { useGlobalContex } from '../context/GlobalProvider';
 
 export default function Index() {
+  const { loading, isLoggedIn, user } = useGlobalContex();
+
+  if (!loading && isLoggedIn) return <Redirect href="/home" />
+
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView contentContainerStyle={{ height: '100%' }}>
