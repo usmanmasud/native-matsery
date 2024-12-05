@@ -5,8 +5,10 @@ import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
 import { getCurrentUser, signIn } from '../../lib/appwrite'
+import { useGlobalContex } from '../../context/GlobalProvider'
 
 const SignIn = () => {
+    const { setUser, setIsLoggedIn } = useGlobalContex()
     const [form, setForm] = useState({
         email: '',
         password: ''
