@@ -3,6 +3,7 @@ import React from 'react'
 import { Tabs } from 'expo-router'
 import { Image } from 'react-native'
 import { icons } from '../../constants';
+import GlobalProvider from '../../context/GlobalProvider';
 
 const TabIcon = ({ icon, color, name, focused }) => {
     return (
@@ -17,7 +18,7 @@ const TabIcon = ({ icon, color, name, focused }) => {
 
 const TabsLayout = () => {
     return (
-        <>
+        <GlobalProvider>
             <Tabs screenOptions={{
                 tabBarShowLabel: false,
                 tabBarActiveTintColor: '#FFA001',
@@ -34,11 +35,11 @@ const TabsLayout = () => {
                         <TabIcon icon={icons.home} color={color} name="Home" focused={focused} />
                     )
                 }} />
-                <Tabs.Screen name='bookmark' options={{
+                {/* <Tabs.Screen name='bookmark' options={{
                     title: "Bookmark", headerShown: false, tabBarIcon: ({ color, focused }) => (
                         <TabIcon icon={icons.bookmark} color={color} name="Bookmark" focused={focused} />
                     )
-                }} />
+                }} /> */}
                 <Tabs.Screen name='create' options={{
                     title: "Create", headerShown: false, tabBarIcon: ({ color, focused }) => (
                         <TabIcon icon={icons.plus} color={color} name="Create" focused={focused} />
@@ -50,7 +51,7 @@ const TabsLayout = () => {
                     )
                 }} />
             </Tabs>
-        </>
+        </GlobalProvider>
     )
 }
 
